@@ -49,12 +49,11 @@ function App() {
         />
 
         {error && <p className='mt-4 text-red-400'>{error}</p>}
-        {profile && <p className='mt-4 text-slate-400'>Found: {profile.login}</p>}
-
+        
         <section className='mt-8 grid gap-6 lg:grid-cols-[1fr_2fr]'>
           <div className='space-y-6'>
-            <ProfileCard />
-            <StatsPanel />
+            <ProfileCard profile={profile} />
+            <StatsPanel profile={profile} />
           </div>
         
           <RepoList />
