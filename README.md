@@ -40,6 +40,9 @@ A React + Vite dashboard for searching GitHub users and viewing profile and repo
 - Temporary profile render check added
 - Profile data rendered in `ProfileCard`
 - GitHub stats rendered in `StatsPanel`
+- Loading state added during API requests
+- GitHub repositories fetched and stored in state
+- Repository cards rendered with repo links, descriptions, language, stars, and forks
 
 ## Build Log
 
@@ -59,10 +62,14 @@ Connected the search form to the GitHub Users API with `fetch`, added profile an
 
 Passed fetched profile data into `ProfileCard` and `StatsPanel`, replaced placeholder profile UI with real GitHub user details, rendered avatar/name/login/bio/profile link, and displayed follower/following/repository counts from the API response.
 
+### Session 5
+
+Added loading and repository state, extended the search flow to fetch repositories from the GitHub API, handled repository fetch errors, passed repository data into `RepoList`, and rendered individual `RepoCard` components with links, descriptions, language, stars, and forks.
+
 ## Next Steps
 
-- Add a loading state during API requests
-- Fetch GitHub repositories for the searched user
-- Store repository data in state
-- Connect repository data to `RepoList` and `RepoCard`
+- Polish loading and empty states
+- Improve repository card layout and responsiveness
+- Add accessibility checks and keyboard/focus polish
 - Clean up README starter text and polish the portfolio presentation
+- Add testing and light performance improvements after MVP

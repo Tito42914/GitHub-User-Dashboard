@@ -1,8 +1,27 @@
-function RepoCard() {
+function RepoCard({ repo }) {
   return (
-    <section>
-      <p>Repo card goes here</p>
-    </section>
+    <article className="rounded-md border border-slate-800 bg-slate-950 p-4">
+      <h3 className="font-semibold">
+        <a
+          href={repo.html_url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-400 hover:text-blue-300"
+        >
+          {repo.name}
+        </a>
+      </h3>
+
+      <p className="mt-2 text-sm text-slate-400">
+        {repo.description || 'No description available.'}
+      </p>
+
+      <div className="mt-4 flex gap-4 text-sm text-slate-400">
+        <span>{repo.language || 'Unknown'}</span>
+        <span>{repo.stargazers_count} stars</span>
+        <span>{repo.forks_count} forks</span>
+      </div>
+    </article>
   )
 }
 

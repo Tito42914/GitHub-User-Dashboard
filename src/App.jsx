@@ -8,6 +8,8 @@ function App() {
   const [username, setUsername] = useState('');
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function handleSearch(event) {
     event.preventDefault();
@@ -19,17 +21,37 @@ function App() {
       return;
     }
 
-    const response = await fetch(`https://api.github.com/users/${username}`);
+    setLoading(true);
+    setProfile(null);
+    setRepos([]);
 
-    if (!response.ok) {
-      setProfile(null);
-      setError('User not found');
-      return;
-    }
-    
-    const data = await response.json();
+    try {
+      const response = await fetch(`https://api.github.com/users/${username}`);
+      if (!response.ok) {
+        setProfile(null);
+        setError('User not found');
+        return;
+      }
+      
+      const data = await response.json();
+      
+      setProfile(data);
 
-    setProfile(data);
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+      
+      if (!reposResponse.ok) {
+        setError('Could not load repositories');
+        return;
+      }
+      
+      const reposData = await reposResponse.json();
+
+      setRepos(reposData);
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }  
   }
   
   return (
@@ -49,6 +71,7 @@ function App() {
         />
 
         {error && <p className='mt-4 text-red-400'>{error}</p>}
+        {loading && <p className='mt-4 text-slate-400'>Searching...</p>}
         
         <section className='mt-8 grid gap-6 lg:grid-cols-[1fr_2fr]'>
           <div className='space-y-6'>
@@ -56,7 +79,7 @@ function App() {
             <StatsPanel profile={profile} />
           </div>
         
-          <RepoList />
+          <RepoList repos={repos} loading={loading} />
         </section>
       </div>
     </main>
