@@ -1,7 +1,7 @@
 function RepoCard({ repo }) {
   return (
     <article className="rounded-md border border-slate-800 bg-slate-950 p-4">
-      <h3 className="font-semibold">
+      <h3 className="break-words font-semibold">
         <a
           href={repo.html_url}
           target="_blank"
@@ -16,7 +16,7 @@ function RepoCard({ repo }) {
         {repo.description || 'No description available.'}
       </p>
 
-      <div className="mt-4 flex gap-4 text-sm text-slate-400">
+      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-400">
         <span>{repo.language || 'Unknown'}</span>
         <span>{repo.stargazers_count} stars</span>
         <span>{repo.forks_count} forks</span>

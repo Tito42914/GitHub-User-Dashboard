@@ -43,6 +43,9 @@ A React + Vite dashboard for searching GitHub users and viewing profile and repo
 - Loading state added during API requests
 - GitHub repositories fetched and stored in state
 - Repository cards rendered with repo links, descriptions, language, stars, and forks
+- Repositories sorted by stars and limited to the top 10
+- Repository card layout polished for wrapping and long names
+- Search input accessibility improved with a screen-reader label and focus styles
 
 ## Build Log
 
@@ -66,10 +69,14 @@ Passed fetched profile data into `ProfileCard` and `StatsPanel`, replaced placeh
 
 Added loading and repository state, extended the search flow to fetch repositories from the GitHub API, handled repository fetch errors, passed repository data into `RepoList`, and rendered individual `RepoCard` components with links, descriptions, language, stars, and forks.
 
+### Session 6
+
+Polished the repository section by sorting repos by star count, limiting the visible list to the top 10, adding a repository count message, improving card wrapping for long content, and adding initial accessibility improvements to the search input with a hidden label and visible focus styles.
+
 ## Next Steps
 
-- Polish loading and empty states
-- Improve repository card layout and responsiveness
-- Add accessibility checks and keyboard/focus polish
+- Continue accessibility checks and keyboard/focus polish
 - Clean up README starter text and polish the portfolio presentation
-- Add testing and light performance improvements after MVP
+- Add component tests for search, profile, stats, and repositories
+- Add light performance improvements such as `useMemo` for sorted repositories
+- Consider deployment after the MVP polish pass
